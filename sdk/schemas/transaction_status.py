@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class TransactionStatus(Enum):
-    PENDING = 'PENDING'
-    COMPLETED = 'completed'
-    FAILED = 'failed'
-    CANCELLED = 'cancelled'
+    PROCESSING = 'PROCESSING'
+    FAILED = 'FAILED'
+    SUCCESS = 'SUCCESS'
+    EXPIRED = 'EXPIRED'
