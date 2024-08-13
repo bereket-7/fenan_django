@@ -4,7 +4,6 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from .models import Post
-# Create your views here.
 
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
@@ -13,12 +12,6 @@ from django.shortcuts import get_object_or_404
 class BaseController(View):
 
     pass
-
-
-def show_post(request, post_id):
-    # Assuming you have a Post model to fetch the post data
-    post = get_object_or_404(Post, id=post_id)
-    return HttpResponse(f"Post title: {post.title}")
 
 
 class NotifyController(LoginRequiredMixin, View):
