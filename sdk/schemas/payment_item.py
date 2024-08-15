@@ -2,6 +2,8 @@ import json
 from dataclasses import dataclass
 from typing import Optional, Dict, Any
 
+from sdk.schemas.product_type import ProductType
+
 
 @dataclass
 class PaymentItem:
@@ -9,6 +11,7 @@ class PaymentItem:
     description: Optional[str]
     image: Optional[str]
     quantity: int
+    type: ProductType
     price: float
 
     def to_dict(self) -> Dict[str, Any]:
@@ -17,6 +20,7 @@ class PaymentItem:
             'description': self.description,
             'image': self.image,
             'quantity': self.quantity,
+            "type": self.type.value,
             'price': self.price
         }
 

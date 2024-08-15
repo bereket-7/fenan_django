@@ -20,7 +20,7 @@ class PaymentIntent:
     return_url: str
     expire_in: int
     callback_url: str
-    commission_paid_by_customer: float
+    commission_paid_by_customer: bool
     customer_info: Optional[CustomerInfo]
 
     def to_dict(self) -> Dict[str, Any]:

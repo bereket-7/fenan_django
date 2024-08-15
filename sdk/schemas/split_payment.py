@@ -2,19 +2,21 @@ import json
 from dataclasses import dataclass
 from typing import Any, Dict
 
+from sdk.schemas.split_type import SplitType
+
 
 @dataclass
 class SplitPayment:
     amount: float
     bank: str
-    split_type: str
+    split_type: SplitType
     credit_account: str
 
     def to_dict(self) -> Dict[str, Any]:
         return {
             "amount": self.amount,
             "bank": self.bank,
-            "splitType": self.split_type,
+            "splitType": self.split_type.value,
             "creditAccount": self.credit_account,
         }
 
