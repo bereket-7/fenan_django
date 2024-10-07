@@ -8,8 +8,7 @@ from sdk.schemas.fenanpay_transaction import FenanpayTransaction
 @dataclass
 class FenanpayCheckoutSession:
     id: str
-    # Replace `Any` with the actual type of `FenanpayTransaction`
-    transaction: Optional[Any]
+    transaction: Optional[FenanpayTransaction]
     total_amount: float
     test: Optional[bool]
     uuid: str
