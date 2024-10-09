@@ -2,7 +2,7 @@ import json
 from dataclasses import dataclass
 from typing import Optional, Dict, Any
 
-from sdk.schemas.product_type import ProductType
+from schemas.product_type import ProductType
 
 
 @dataclass
