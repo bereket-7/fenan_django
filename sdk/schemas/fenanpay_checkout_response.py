@@ -1,4 +1,4 @@
-from schemas.payment_method_type import PaymentMethodTypeDto
+from schemas.payment_method_type_dto import PaymentMethodTypeDto
 from schemas.currency import Currency
 from decimal import Decimal
 from typing import List, Set, Optional

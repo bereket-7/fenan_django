@@ -7,7 +7,7 @@ class Fenanpay:
     DEFAULT_HOST = 'https://api.fenanpay.com/api'
     API_VERSION = '/v1'
     PACKAGE_VERSION = '1.0.0'
-    DEFAULT_TIMEOUT = 120  # 2 minutes in seconds
+    DEFAULT_TIMEOUT = 120
 
     def __init__(self, apikey):
         self.apikey = apikey
