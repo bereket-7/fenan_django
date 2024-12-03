@@ -1,4 +1,4 @@
-from direct_pay.direct_pay import DirectPay
+from sdk.core.direct_pay import DirectPay
 from schemas.payment_method_type import PaymentMethodType
 
 
