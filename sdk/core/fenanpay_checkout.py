@@ -1,6 +1,6 @@
 import requests
 from requests.exceptions import RequestException, ConnectionError as RequestsConnectionError
-from sdk import fenanpay
+import fenanpay
 
 from helper.fenanpay_support import FenanpaySupport
 from exception.fenanpay_network_exception import FenanpayNetworkException

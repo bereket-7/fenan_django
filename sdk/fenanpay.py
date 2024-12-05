@@ -1,6 +1,7 @@
 import requests
 
-from sdk.core import fenanpay_checkout, fenanpay_direct_pay
+from core.fenanpay_checkout import FenanpayCheckout
+from core.direct_pay import DirectPay
 
 
 class Fenanpay:
@@ -16,8 +17,8 @@ class Fenanpay:
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         }
-        self.checkout = fenanpay_checkout(self)
-        self.direct_pay = fenanpay_direct_pay(self)
+        self.checkout = FenanpayCheckout(self)
+        self.direct_pay = DirectPay(self)
 
     def _make_request(self, method, endpoint, data=None):
         url = f"{self.DEFAULT_HOST}{self.API_VERSION}{endpoint}"
