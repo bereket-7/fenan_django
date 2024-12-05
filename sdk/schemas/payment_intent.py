@@ -2,10 +2,10 @@ import json
 from dataclasses import dataclass
 from typing import List, Dict, Any, Optional
 
-from customer_info import CustomerInfo
-from sdk.schemas.currency import Currency
-from sdk.schemas.payment_method_type import PaymentMethodType
-from split_payment import SplitPayment
+from schemas.customer_info import CustomerInfo
+from schemas.currency import Currency
+from schemas.payment_method_type import PaymentMethodType
+from schemas.split_payment import SplitPayment
 
 
 @dataclass

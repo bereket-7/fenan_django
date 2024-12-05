@@ -5,8 +5,8 @@ from typing import List, Set, Optional
 import json
 from dataclasses import dataclass
 
-from sdk.schemas.checkout_split_payment_dto import CheckoutSplitPaymentDto
-from sdk.schemas.payment_item import PaymentItem
+from schemas.checkout_split_payment_dto import CheckoutSplitPaymentDto
+from schemas.payment_item import PaymentItem
 
 
 @dataclass

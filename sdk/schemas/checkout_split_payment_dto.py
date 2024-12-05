@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from sdk.schemas.split_type import SplitType
+from schemas.split_type import SplitType
 
 
 @dataclass

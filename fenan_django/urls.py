@@ -21,7 +21,4 @@ from sdk.views import NotifyController
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('posts/', NotifyController.as_view(), name='posts.index'),
-    path('posts/<int:post_id>/', NotifyController.as_view(), name='posts.show'),
-    path('posts/create/', NotifyController.as_view(), name='posts.store'),
 ]

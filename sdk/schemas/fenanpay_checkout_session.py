@@ -2,7 +2,7 @@ import json
 from dataclasses import dataclass
 from typing import Optional, Any, Dict
 
-from sdk.schemas.fenanpay_transaction import FenanpayTransaction
+from schemas.fenanpay_transaction import FenanpayTransaction
 
 
 @dataclass

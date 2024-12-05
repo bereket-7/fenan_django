@@ -1,7 +1,7 @@
 import json
 from dataclasses import dataclass
 from typing import Optional
-from fenanpay_transaction import FenanpayTransaction
+from schemas.fenanpay_transaction import FenanpayTransaction
 
 
 @dataclass

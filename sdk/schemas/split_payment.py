@@ -2,7 +2,7 @@ import json
 from dataclasses import dataclass
 from typing import Any, Dict
 
-from sdk.schemas.split_type import SplitType
+from schemas.split_type import SplitType
 
 
 @dataclass

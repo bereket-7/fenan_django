@@ -2,8 +2,8 @@ import json
 from dataclasses import dataclass
 from typing import Dict, Any
 
-from sdk.schemas.payment_method_type import PaymentMethodType
-from sdk.schemas.transaction_status import TransactionStatus
+from schemas.payment_method_type import PaymentMethodType
+from schemas.transaction_status import TransactionStatus
 
 
 @dataclass
