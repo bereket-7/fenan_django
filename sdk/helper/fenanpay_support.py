@@ -9,7 +9,6 @@ from exception.fenanpay_network_exception import FenanpayNetworkException
 from exception.fenanpay_not_found_exception import FenanpayNotFoundException
 from exception.fenanpay_unauthorized_exception import FenanpayUnauthorizedException
 
-# Set up logging
 logger = logging.getLogger(__name__)
 
 

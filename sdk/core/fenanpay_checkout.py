@@ -1,6 +1,6 @@
-import requests
+from requests import post, get
 from requests.exceptions import RequestException, ConnectionError as RequestsConnectionError
-import fenanpay
+from fenanpay import Fenanpay
 
 from helper.fenanpay_support import FenanpaySupport
 from exception.fenanpay_network_exception import FenanpayNetworkException
@@ -15,18 +15,17 @@ class FenanpayCheckout:
     def __init__(self, http_client):
         self.http_client = http_client
 
-    def create(self, fenanpay_checkout_request: FenanpayCheckoutRequest, option: FenanpayOptions = None) -> FenanpayCheckoutResponse:
+    def create(self, fenanpay_checkout_request: FenanpayCheckoutRequest, option: FenanpayOptions = None):
         if option is None:
             option = FenanpayOptions(sandbox=False)
 
         try:
             base_path = '/sandbox' if option.sandbox else ''
-            url = f"{fenanpay.API_VERSION}/payment{base_path}/intent"
-            response = self.http_client.post(
-                url, json=fenanpay_checkout_request.to_dict())
-
-            arif_api_response = FenanpayAPIResponse.from_json(response.json())
-            return arif_api_response.content
+            endpoint = f"/payment{base_path}/intent"
+            response = Fenanpay._make_request(
+                post, endpoint, json=fenanpay_checkout_request.to_json)
+            api_response = FenanpayAPIResponse.to_json(response)
+            return api_response
         except RequestsConnectionError as e:
             raise FenanpayNetworkException() from e
         except RequestException as e:
@@ -39,12 +38,10 @@ class FenanpayCheckout:
 
         try:
             base_path = '/sandbox' if option.sandbox else ''
-            url = f"{
-                fenanpay.API_VERSION}/payment/{base_path}/checkout/payment_intent_id"
-            response = self.http_client.get(url)
-
-            arif_api_response = FenanpayAPIResponse.from_json(response.json())
-            return FenanpayCheckoutResponse.from_json(arif_api_response.content)
+            endpoint = f"/payment/{base_path}/checkout/{payment_intent_id}"
+            response = Fenanpay._make_request(get, endpoint)
+            api_response = FenanpayAPIResponse.to_json(response)
+            return api_response
         except RequestsConnectionError as e:
             raise FenanpayNetworkException() from e
         except RequestException as e:
@@ -57,12 +54,10 @@ class FenanpayCheckout:
 
         try:
             base_path = '/sandbox' if option.sandbox else ''
-            url = f"{fenanpay.API_VERSION}{
-                base_path}/payment/intent/cancel/{session_id}"
-            response = self.http_client.post(url)
-
-            arif_api_response = FenanpayAPIResponse.from_json(response.json())
-            return FenanpayCheckoutSession.from_json(arif_api_response.content)
+            endpoint = f"/payment/{base_path}/intent/cancel/{session_id}"
+            response = Fenanpay._make_request(post, endpoint)
+            api_response = FenanpayAPIResponse.to_json(response)
+            return api_response
         except RequestsConnectionError as e:
             raise FenanpayNetworkException() from e
         except RequestException as e:

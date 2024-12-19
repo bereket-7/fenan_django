@@ -23,7 +23,6 @@ class Fenanpay:
     def _make_request(self, method, endpoint, data=None):
         url = f"{self.DEFAULT_HOST}{self.API_VERSION}{endpoint}"
         response = requests.request(
-            method, url, headers=self.headers, json=data, timeout=self.DEFAULT_TIMEOUT
-        )
+            method, url, headers=self.headers, json=data, timeout=self.DEFAULT_TIMEOUT)
         response.raise_for_status()
         return response.json()
