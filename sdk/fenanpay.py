@@ -15,9 +15,9 @@ class Fenanpay:
             'Accept': 'application/json'
         }
         from api.fenanpay_checkout_api import FenanpayCheckout
-        from api.direct_pay_api import DirectPay
+        from sdk.api.express_pay_api import ExpressPay
         self.checkout = FenanpayCheckout(self)
-        self.direct_pay = DirectPay(self)
+        self.express_pay = ExpressPay(self)
 
     def make_request(self, method, endpoint, data=None):
         url = f"{Fenanpay.DEFAULT_HOST}{Fenanpay.API_VERSION}{endpoint}"

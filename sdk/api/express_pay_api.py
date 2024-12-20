@@ -5,7 +5,7 @@ from schemas.payment_intent import PaymentIntent
 from requests.exceptions import RequestException, ConnectionError
 
 
-class DirectPay:
+class ExpressPay:
     def __init__(self, http_client):
         self.http_client = http_client
 
