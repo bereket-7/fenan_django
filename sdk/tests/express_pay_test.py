@@ -17,9 +17,9 @@ def test_express_pay():
             currency=Currency.ETB,
             payment_intent_unique_id="KiOdIGua4AdIlOooxx43gxR1qwe456y7890oDiuy6yhbvcds1",
             method_type=[PaymentMethodType.TELE_BIRR],
-            return_url="https://gemini.google.com/app",
+            return_url="https://returnurl",
             expire_in=3600,
-            callback_url="https://gemini.google.com/app",
+            callback_url="https://callbacllurl",
             commission_paid_by_customer=True,
             customer_info=CustomerInfo(
                 name="Bereket",

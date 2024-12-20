@@ -22,9 +22,9 @@ def test_checkout_create():
         currency=Currency.ETB,
         payment_intent_unique_id="w5g6c8x28q6608qa200mkgjkoxx0trxld5op00fcx9er8uj2adf",
         payment_type=PaymentMethodType.TELE_BIRR,
-        return_url="https://gemini.google.com/app",
+        return_url="https://returnurl/",
         expire_in=3600,
-        callback_url="https://gemini.google.com/app",
+        callback_url="https://callbackurl/",
         commission_paid_by_customer=True,
         customer_info=customer_info,
     )
