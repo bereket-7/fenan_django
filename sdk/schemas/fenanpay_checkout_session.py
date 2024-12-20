@@ -28,7 +28,6 @@ class FenanpayCheckoutSession:
 
     @staticmethod
     def from_dict(data: Dict[str, Any]) -> 'FenanpayCheckoutSession':
-        # Assume FenanpayTransaction has a `from_dict` method
         transaction = FenanpayTransaction.from_dict(
             data["transaction"]) if data.get("transaction") else None
         return FenanpayCheckoutSession(

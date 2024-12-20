@@ -1,9 +1,9 @@
 import json
+from typing import Optional, List, Dict, Any
 from dataclasses import dataclass
-from typing import List, Optional, Dict, Any
-from schemas.currency import Currency
-from schemas.customer_info import CustomerInfo
 from schemas.payment_item import PaymentItem
+from schemas.customer_info import CustomerInfo
+from schemas.currency import Currency
 from schemas.payment_method_type import PaymentMethodType
 from schemas.split_payment import SplitPayment
 
@@ -11,22 +11,23 @@ from schemas.split_payment import SplitPayment
 @dataclass
 class FenanpayCheckoutRequest:
     amount: float
-    items: List[PaymentItem]
     currency: Currency
     payment_intent_unique_id: str
     payment_type: PaymentMethodType
-    payment_link_unique_id: Optional[str]
-    split_payment: Optional[SplitPayment]
     return_url: str
     expire_in: int
-    callback_url: Optional[str]
     commission_paid_by_customer: bool
-    customer_info: Optional[CustomerInfo]
+
+    items: Optional[List[PaymentItem]] = None
+    payment_link_unique_id: Optional[str] = None
+    split_payment: Optional[SplitPayment] = None
+    callback_url: Optional[str] = None
+    customer_info: Optional[CustomerInfo] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
             "amount": self.amount,
-            "paymentItem": [item.to_dict() for item in self.items],
+            "paymentItem": [item.to_dict() for item in self.items] if self.items else None,
             "currency": self.currency.value,
             "paymentIntentUniqueId": self.payment_intent_unique_id,
             "paymentType": self.payment_type.value,
@@ -44,7 +45,7 @@ class FenanpayCheckoutRequest:
         return FenanpayCheckoutRequest(
             amount=data.get("amount", 0.0),
             items=[PaymentItem.from_dict(item)
-                   for item in data.get("items", [])],
+                   for item in data.get("paymentItem", [])] if data.get("paymentItem") else None,
             currency=Currency(data.get("currency", "")),
             payment_intent_unique_id=data.get("paymentIntentUniqueId", ""),
             payment_type=PaymentMethodType(data.get("paymentType", "")),

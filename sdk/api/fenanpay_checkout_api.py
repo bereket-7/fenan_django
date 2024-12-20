@@ -6,7 +6,6 @@ from helper.fenanpay_support import FenanpaySupport
 from exception.fenanpay_network_exception import FenanpayNetworkException
 from schemas.fenanpay_api_response import FenanpayAPIResponse
 from schemas.fenanpay_checkout_request import FenanpayCheckoutRequest
-from schemas.fenanpay_checkout_response import FenanpayCheckoutResponse
 from schemas.fenanpay_checkout_session import FenanpayCheckoutSession
 from schemas.fenanpay_options import FenanpayOptions
 
@@ -22,8 +21,9 @@ class FenanpayCheckout:
         try:
             base_path = '/sandbox' if option.sandbox else ''
             endpoint = f"/payment{base_path}/intent"
-            response = Fenanpay._make_request(
-                post, endpoint, json=fenanpay_checkout_request.to_json)
+            response = self.http_client.make_request(
+                "POST", endpoint, fenanpay_checkout_request.to_json()
+            )
             api_response = FenanpayAPIResponse.to_json(response)
             return api_response
         except RequestsConnectionError as e:
