@@ -15,7 +15,7 @@ class Fenanpay:
             'Accept': 'application/json'
         }
         from api.fenanpay_checkout_api import FenanpayCheckout
-        from sdk.api.express_pay_api import ExpressPay
+        from api.express_pay_api import ExpressPay
         self.checkout = FenanpayCheckout(self)
         self.express_pay = ExpressPay(self)
 

@@ -1,4 +1,3 @@
-from requests import post, get
 from requests.exceptions import RequestException, ConnectionError as RequestsConnectionError
 from fenanpay import Fenanpay
 
@@ -6,7 +5,6 @@ from helper.fenanpay_support import FenanpaySupport
 from exception.fenanpay_network_exception import FenanpayNetworkException
 from schemas.fenanpay_api_response import FenanpayAPIResponse
 from schemas.fenanpay_checkout_request import FenanpayCheckoutRequest
-from schemas.fenanpay_checkout_session import FenanpayCheckoutSession
 from schemas.fenanpay_options import FenanpayOptions
 
 
@@ -32,14 +30,14 @@ class FenanpayCheckout:
             FenanpaySupport.handle_exception(e)
             raise
 
-    def fetch(self, payment_intent_id: str, option: FenanpayOptions = None) -> FenanpayCheckoutSession:
+    def fetch(self, payment_intent_id: str, option: FenanpayOptions = None):
         if option is None:
             option = FenanpayOptions(sandbox=False)
 
         try:
             base_path = '/sandbox' if option.sandbox else ''
             endpoint = f"/payment/{base_path}/checkout/{payment_intent_id}"
-            response = Fenanpay._make_request(get, endpoint)
+            response = Fenanpay._make_request("GET", endpoint)
             api_response = FenanpayAPIResponse.to_json(response)
             return api_response
         except RequestsConnectionError as e:
@@ -48,14 +46,14 @@ class FenanpayCheckout:
             FenanpaySupport.handle_exception(e)
             raise
 
-    def cancel(self, session_id: str, option: FenanpayOptions = None) -> FenanpayCheckoutSession:
+    def cancel(self, session_id: str, option: FenanpayOptions = None):
         if option is None:
             option = FenanpayOptions(sandbox=False)
 
         try:
             base_path = '/sandbox' if option.sandbox else ''
             endpoint = f"/payment/{base_path}/intent/cancel/{session_id}"
-            response = Fenanpay._make_request(post, endpoint)
+            response = Fenanpay._make_request("POST", endpoint)
             api_response = FenanpayAPIResponse.to_json(response)
             return api_response
         except RequestsConnectionError as e:
